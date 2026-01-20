@@ -8,8 +8,8 @@ import random
 
 
 print(tf.__version__)
-from keras.datasets import cifar10
-(x_train, y_train), (x_test, y_test) = cifar10.load_data()
+from keras.datasets import cifar100
+(x_train, y_train), (x_test, y_test) = cifar100.load_data()
 
 
 # sns.countplot(x=y_train)
@@ -26,8 +26,8 @@ x_test = x_test.astype('float32') / 255.0
 
 from keras.utils import to_categorical
 
-y_train = to_categorical(y_train, 10)
-y_test = to_categorical(y_test, 10)
+y_train = to_categorical(y_train, 100)
+y_test = to_categorical(y_test, 100)
 
 
 #show an example image from MNIST
@@ -36,7 +36,7 @@ plt.show()
 
 
 batch_size = 128
-num_classes = 10
+num_classes = 100
 epochs = 5
 
 
@@ -57,7 +57,7 @@ model = tf.keras.models.Sequential(
     tf.keras.layers.Conv2D(32, (5,5), padding='same', activation='relu', input_shape=input_shape),
     tf.keras.layers.Conv2D(32, (3,3), padding='same', activation='relu', input_shape=input_shape),
     tf.keras.layers.MaxPool2D(),
-    tf.keras.layers.Dropout(0.25),
+    tf.keras.layers.Dropout(0.25), 
     tf.keras.layers.Conv2D(64, (5,5), padding='same', activation='relu', input_shape=input_shape),
     tf.keras.layers.Conv2D(64, (3,3), padding='same', activation='relu', input_shape=input_shape),
     tf.keras.layers.Flatten(),
